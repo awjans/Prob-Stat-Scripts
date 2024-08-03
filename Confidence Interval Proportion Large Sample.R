@@ -1,6 +1,6 @@
 # Proportion Large Sample Confidence Interval
 # N >= 30
-source("Scripts/MiscFuncs.R")
+source("MiscFuncs.R")
 
 n <- 420
 p <- 278/420

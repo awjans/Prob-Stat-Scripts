@@ -1,3 +1,7 @@
+# Proportion Small Sample Hypothesis Test
+# N < 30
+source("MiscFuncs.R")
+
 # N < 30
 
 p <- 0.14

@@ -1,4 +1,4 @@
-# Std Deviation Small Sample Confidence Interval
+# Standard Deviation Small Sample Confidence Interval
 # N < 30
 source("MiscFuncs.R")
 

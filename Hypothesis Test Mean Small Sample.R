@@ -1,6 +1,6 @@
-# Mean Hypothesis Test Small Sample
+# Mean Small Sample Hypothesis Test
 # N < 30
-source("Scripts/MiscFuncs.R")
+source("MiscFuncs.R")
 
 n <- 8
 y <- 2959

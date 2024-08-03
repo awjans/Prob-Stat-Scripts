@@ -1,6 +1,6 @@
-# Mean Difference Hypothesis Test Small Sample
+# Mean Difference Small Sample Hypothesis Test
 # N < 30
-source("Scripts/MiscFuncs.R")
+source("MiscFuncs.R")
 
 n1 <- 11
 y1 <- 0.043
