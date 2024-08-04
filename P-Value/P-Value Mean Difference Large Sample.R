@@ -14,7 +14,7 @@ y2 <- 0.042
 s2 <- 0.006
 v2 <- s2^2
 
-df <- degreesOfFreedom(n1, n2)
+df <- degreeOfFreedom(c(n1, n2))
 
 #Hnul: y1 - y2 = 0
 #Halt: y1 - y2 != 0

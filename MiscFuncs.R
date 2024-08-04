@@ -1,24 +1,21 @@
 options(scipen=100,digits=4) #this is to avoid scientific notation
 
 degreeOfFreedom <- function(n) {
-  # Calculate the degrees of freedom for the one sample
-  df <- n - 1
-  df
-}
-
-degreesOfFreedom <- function(n1,n2) {
-  # Calculate the degrees of freedom for two samples
-  df <- n1 + n2 - 2
-  df
+  # Calculate the degrees of freedom for one or more samples
+  if (length(n) <= 0)
+    stop("n must have at least one element")
+  if (!is.numeric(n))
+    stop("n must be a numeric vector")
+  
+  sum(n) - length(n)
 }
 
 pooledVarianceEstimator <- function(v1,n1,v2,n2) {
   # Calculate the pooled variance
   w1 <- (n1-1)*(v1)
   w2 <- (n2-1)*(v2)
-  df <- degreesOfFreedom(n1,n2)
-  pv <- (w1+w2)/df
-  pv
+  df <- degreeOfFreedom(c(n1,n2))
+  (w1+w2)/df
 }
 
 meanSE <- function(s,n) {

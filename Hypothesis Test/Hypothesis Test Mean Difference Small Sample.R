@@ -19,7 +19,7 @@ v2 <- s2^2
 m1 <- 0.00
 m2 <- 0.00
 
-df = degreesOfFreedom(n1, n2)
+df = degreeOfFreedom(c(n1, n2))
 
 a = 0.05
 

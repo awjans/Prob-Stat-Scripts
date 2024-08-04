@@ -11,7 +11,7 @@ s = sqrt(v)
 
 S = 35
 V = S^2
-df = degreesOfFreedom(n)
+df = degreeOfFreedom(n)
 
 #Hnul: s = S
 #Halt: s > S
