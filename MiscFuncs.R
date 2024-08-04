@@ -76,18 +76,42 @@ rejectionRegionF <- function(a,df1,df2) {
   c(qf(a/2,df1,df2),qf(1 - a/2,df1,df2))
 }
 
-pValueZ <- function(zstat) {
-  1 - pnorm(zstat)
+pValueZ <- function(zstat, twotailed = FALSE) {
+  if (zstat >= 0)
+    pv <- 1 - pnorm(zstat)
+  if (zstat < 0)
+    pv <- pnorm(zstat)
+  if (twotailed == TRUE)
+    pv <- 2*(1 - pnorm(abs(zstat)))
+  pv
 }
 
-pValueT <- function(tstat, df) {
-  pt(tstat, df)
+pValueT <- function(tstat, df, twotailed = FALSE) {
+  if (tstat >= 0)
+    pv <- pt(-tstat, df)
+  if (tstat < 0)
+    pv <- pt(tstat, df)
+  if (twotailed == TRUE)
+    pv <- 2*pt(abs(tstat))
+  pv
 }
 
-pValueC <- function(cstat, df) {
-  pchisq(cstat, df)
+pValueC <- function(cstat, df, twotailed = FALSE) {
+  if (cstat >= 0)
+    pv <- 1 - pchisq(cstat, df)
+  if (cstat < 0)
+    pv <- pchisq(cstat, df)
+  if (twotailed == TRUE)
+    pv <- 2*pchisq(abs(cstat), df)
+  pv
 }
 
-pValueF <- function(fstat, df1, df2) {
-  2*(1 - pf(fstat, df1, df2))
+pValueF <- function(fstat, df1, df2, twotailed = FALSE) {
+  if (fstat >= 0)
+    pv <- 1 - pf(fstat, df1, df2)
+  if (fstat < 0)
+    pv <- pf(fstat, df1, df2)
+  if (twotailed == TRUE)
+    pv <- 2*pf(abs(fstat), df1, df2)
+  pv
 }

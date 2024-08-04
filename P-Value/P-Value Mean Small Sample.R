@@ -1,6 +1,6 @@
 # Mean Small Sample P-Value
 # N < 30
-source("MarginOfError.R")
+source("MiscFuncs.R")
 
 alpha <- 0.05
 
@@ -10,13 +10,16 @@ s <- 0.12
 
 mu <- 7
 
+df <- degreeOfFreedom(n)
+
 #Hnul: y = mu
-#Halt: y != mu
+#Halt: y < mu
 
-rrhi <- qt(1 - alpha/2, n - 1)
-rrlo <- qt(alpha/2, n - 1)
+se = meanSE(s, n)
 
-tstat <- (y - mu)/meanME(s, n)
-pValue <- 2*(pt(-tstat,n-1))
+tstat <- (y - mu)/se
+
+pValue <- pValueT(tstat, df)
 
 rejectNull <- pValue < alpha
+
