@@ -10,7 +10,7 @@ s1 <- 0.017
 v1 <- s1^2
 
 n2 <- 13
-y2 <- 0.026
+y2 <- 0.040
 s2 <- 0.006
 v2 <- s2^2
 
@@ -19,10 +19,9 @@ df <- degreesOfFreedom(n1, n2)
 #Hnul: y1 - y2 = 0
 #Halt: y1 - y2 > 0
 
-sp = pooledVarianceEstimator(v1, n1, v2, n2)
-se = pooledMeanDiffSE(n1, n2)
+se = pooledMeanDiffSE(s1, n1, s2, n2)
 
-tstat <- (y1 - y2)/(sp*se)
+tstat <- (y1 - y2)/(se)
 
 pValue <- pValueT(tstat, df)
 

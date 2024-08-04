@@ -10,19 +10,20 @@ s1 <- 0.017
 v1 <- s1^2
 
 n2 <- 43
-y2 <- 0.026
+y2 <- 0.042
 s2 <- 0.006
 v2 <- s2^2
 
 df <- degreesOfFreedom(n1, n2)
 
 #Hnul: y1 - y2 = 0
-#Halt: y1 - y2 > 0
+#Halt: y1 - y2 != 0
 
 se = meanDiffSE(s1, n1, s2, n2)
 
 zstat <- (y1 - y2)/(se)
 
-pValue <- pValueZ(zstat)
+pValue <- pValueZ(zstat, TRUE)
 
 rejectNull <- pValue < alpha
+

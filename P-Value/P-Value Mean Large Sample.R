@@ -18,7 +18,7 @@ se <- meanSE(s, n)
 
 zstat <- (y - mu)/(se) # 1.98
 
-pValue <- pValueZ(zstat)    # 0.024
+pValue <- pValueZ(zstat, TRUE)    # 0.024
 
 rejectNull <- pValue < alpha
 

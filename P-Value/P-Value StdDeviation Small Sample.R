@@ -16,10 +16,7 @@ df = n - 1
 #Hnul: s = S
 #Halt: s > S
 
-rrhi <- qchisq(1 - alpha/2, df)
-rrlo <- qchisq(alpha/2, df)
-
 cstat <- ((n - 1)*v)/V
-pValue <- pchisq(cstat, df)
+pValue <- pValueC(cstat, df)
 
 rejectNull <- pValue < alpha

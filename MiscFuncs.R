@@ -31,9 +31,9 @@ meanDiffSE <- function(s1,n1,s2,n2) {
   sqrt((s1^2/n1)+(s2^2/n2))
 }
 
-pooledMeanDiffSE <- function(n1,n2) {
+pooledMeanDiffSE <- function(s1,n1,s2,n2) {
   # Calculate the Margin of Error for the difference of two means
-  sqrt((1/n1)+(1/n2))
+  pooledVarianceEstimator(s1^2,n1,s2^2,n1)*sqrt((1/n1)+(1/n2))
 }
 
 proportionSE <- function(p,n) {
@@ -77,41 +77,61 @@ rejectionRegionF <- function(a,df1,df2) {
 }
 
 pValueZ <- function(zstat, twotailed = FALSE) {
+  # Calculate the P-Value from the Z-Statistic
+  # If the Z-Statistic is greater than or equal to 0, the P-Value is 1 - the area to the left of the Z-Statistic
   if (zstat >= 0)
     pv <- 1 - pnorm(zstat)
+  # If the Z-Statistic is less than 0, the P-Value is the area to the left of the Z-Statistic
   if (zstat < 0)
     pv <- pnorm(zstat)
+  # If the test is two-tailed, the P-Value is doubled
   if (twotailed == TRUE)
     pv <- 2*(1 - pnorm(abs(zstat)))
+  # Return the P-Value
   pv
 }
 
 pValueT <- function(tstat, df, twotailed = FALSE) {
+  # Calculate the P-Value from the T-Statistic
+  # If the T-Statistic is greater than or equal to 0, the P-Value is 1 - the area to the left of the T-Statistic
   if (tstat >= 0)
     pv <- pt(-tstat, df)
+  # If the T-Statistic is less than 0, the P-Value is the area to the left of the T-Statistic
   if (tstat < 0)
     pv <- pt(tstat, df)
+  # If the test is two-tailed, the P-Value is doubled
   if (twotailed == TRUE)
-    pv <- 2*pt(abs(tstat))
+    pv <- 2*pt(abs(tstat), df)
+  # Return the P-Value
   pv
 }
 
 pValueC <- function(cstat, df, twotailed = FALSE) {
+  # Calculate the P-Value from the Chi-Squared Statistic
+  # If the Chi-Squared Statistic is greater than or equal to 0, the P-Value is 1 - the area to the left of the Chi-Squared Statistic
   if (cstat >= 0)
     pv <- 1 - pchisq(cstat, df)
+  # If the Chi-Squared Statistic is less than 0, the P-Value is the area to the left of the Chi-Squared Statistic
   if (cstat < 0)
     pv <- pchisq(cstat, df)
+  # If the test is two-tailed, the P-Value is doubled
   if (twotailed == TRUE)
     pv <- 2*pchisq(abs(cstat), df)
+  # Return the P-Value
   pv
 }
 
 pValueF <- function(fstat, df1, df2, twotailed = FALSE) {
+  # Calculate the P-Value from the F-Statistic
+  # If the F-Statistic is greater than or equal to 0, the P-Value is 1 - the area to the left of the F-Statistic
   if (fstat >= 0)
     pv <- 1 - pf(fstat, df1, df2)
+  # If the F-Statistic is less than 0, the P-Value is the area to the left of the F-Statistic
   if (fstat < 0)
     pv <- pf(fstat, df1, df2)
+  # If the test is two-tailed, the P-Value is doubled
   if (twotailed == TRUE)
     pv <- 2*pf(abs(fstat), df1, df2)
+  # Return the P-Value
   pv
 }
