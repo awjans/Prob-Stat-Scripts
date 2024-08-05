@@ -1,6 +1,6 @@
 # Standard Deviation Large Sample P-Value
 # N >= 30
-source("Scripts/MiscFuncs.R")
+source("MiscFuncs.R")
 
 alpha <- 0.05
 

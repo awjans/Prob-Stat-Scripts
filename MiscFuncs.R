@@ -19,37 +19,37 @@ pooledVarianceEstimator <- function(v1,n1,v2,n2) {
 }
 
 meanSE <- function(s,n) {
-  # Calculate the mean Margin of Error
+  # Calculate the mean Standard Error
   s/sqrt(n)
 }
 
 meanDiffSE <- function(s1,n1,s2,n2) {
-  # Calculate the Margin of Error for the difference of two means
+  # Calculate the Standard Error for the difference of two means
   sqrt((s1^2/n1)+(s2^2/n2))
 }
 
 pooledMeanDiffSE <- function(s1,n1,s2,n2) {
-  # Calculate the Margin of Error for the difference of two means
+  # Calculate the Standard Error for the difference of two pooled means
   pooledVarianceEstimator(s1^2,n1,s2^2,n1)*sqrt((1/n1)+(1/n2))
 }
 
 proportionSE <- function(p,n) {
-  # Calculate the population Margin of Error
+  # Calculate the population Standard Error
   sqrt(p*(1-p)/n)
 }
 
 proportionDiffSE <- function(p1,n1,p2,n2) {
-  # Calculate the Margin of Error for the difference of two proportions
+  # Calculate the Standard Error for the difference of two proportions
   sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
 }
 
 stddevSE <- function(s,n) {
-  # Calculate the Margin of Error for a standard deviation
+  # Calculate the Standard Error for a standard deviation
   s/sqrt(2*(n-1))
 }
 
 varianceSE <- function(s,n) {
-  # Calculate the Margin of Error for a variance
+  # Calculate the Standard Error for a variance
   sqrt(2*s^2/(n-1))
 }
 
