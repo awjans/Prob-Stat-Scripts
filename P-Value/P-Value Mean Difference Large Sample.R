@@ -2,28 +2,29 @@
 # N >= 30
 source("MiscFuncs.R")
 
-alpha <- 0.05
+N1 <- 100
+Ybar1 <- 0.041
+S1 <- 0.017
+V1 <- S1^2
 
-n1 <- 40
-y1 <- 0.041
-s1 <- 0.017
-v1 <- s1^2
+N2 <- 130
+Ybar2 <- 0.043
+S2 <- 0.006
+V2 <- S2^2
 
-n2 <- 43
-y2 <- 0.042
-s2 <- 0.006
-v2 <- s2^2
+df <- degreesOfFreedom(c(N1, N2))
 
-df <- degreeOfFreedom(c(n1, n2))
+H0 <- mu1 - mu2 == 0
+H1 <- mu1 - mu2 != 0 # Statistic is Two-Tailed Test if H1 is not equal
 
-#Hnul: y1 - y2 = 0
-#Halt: y1 - y2 != 0
+nom = (Ybar1 - Ybar2) # - [mu1 - mu2] # If H0 is not equal to 0, then subtract the difference from the numerator
+se = meanDiffSE(S1, N1, S2, N2)
 
-se = meanDiffSE(s1, n1, s2, n2)
-
-zstat <- (y1 - y2)/(se)
+zstat <- nom/se
 
 pValue <- pValueZ(zstat, TRUE)
+
+alpha <- 0.05
 
 rejectNull <- pValue < alpha
 

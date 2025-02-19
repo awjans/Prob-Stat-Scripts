@@ -4,19 +4,20 @@ source("MiscFuncs.R")
 
 # N < 30
 
-p <- 0.14
+p <- 0.05
 
-alpha <- 0.05
+alpha <- 0.01
 
-n <- 100
-phat <- 0.13
+n <- 1164
+phat <- 49/n
 
 # H null
 #p = phat
 # H alt
 #p < phat
 
-RRlo <- qnorm(alpha)
-RRhi <- qnorm(1 - alpha)
+rr <- rejectionRegionZ(alpha)
 
 z = (phat - p)/sqrt((p*(1-p))/n)
+rr
+pValueZ(z, FALSE)

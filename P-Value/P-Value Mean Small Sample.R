@@ -10,7 +10,7 @@ s <- 0.12
 
 mu <- 7
 
-df <- degreeOfFreedom(n)
+df <- degreesOfFreedom(n)
 
 #Hnul: y = mu
 #Halt: y < mu

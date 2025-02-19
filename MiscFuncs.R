@@ -1,6 +1,6 @@
-options(scipen=100,digits=4) #this is to avoid scientific notation
+options(scipen=100,digits=6) #this is to avoid scientific notation
 
-degreeOfFreedom <- function(n) {
+degreesOfFreedom <- function(n) {
   # Calculate the degrees of freedom for one or more samples
   if (length(n) <= 0)
     stop("n must have at least one element")
@@ -14,7 +14,7 @@ pooledVarianceEstimator <- function(v1,n1,v2,n2) {
   # Calculate the pooled variance
   w1 <- (n1-1)*(v1)
   w2 <- (n2-1)*(v2)
-  df <- degreeOfFreedom(c(n1,n2))
+  df <- degreesOfFreedom(c(n1,n2))
   (w1+w2)/df
 }
 
@@ -131,4 +131,19 @@ pValueF <- function(fstat, df1, df2, twotailed = FALSE) {
     pv <- 2*pf(abs(fstat), df1, df2)
   # Return the P-Value
   pv
+}
+
+confidenceIntervalZ <- function(m, me, ci = 0.95) {
+  # Calculate the Confidence Interval for a Z-Statistic
+  q <- ci + (1 - ci)/2
+  z <- qnorm(q)
+  c(m - z*me, m + z*me)
+}
+
+
+confidenceIntervalT <- function(m, me, df, ci = 0.95) {
+  # Calculate the Confidence Interval for a T-Statistic
+  q <- ci + (1 - ci)/2
+  t <- qt(q, df)
+  c(m - t*me, m + t*me)
 }
